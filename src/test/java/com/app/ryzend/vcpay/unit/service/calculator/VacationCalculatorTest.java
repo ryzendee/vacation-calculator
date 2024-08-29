@@ -20,12 +20,12 @@ public class VacationCalculatorTest {
 
     @Test
     void calculate_resultShouldBeEqualToExpected() {
-        BigDecimal expected = new BigDecimal(20);
+        BigDecimal expectedResult = new BigDecimal(20);
 
         BigDecimal avgSalary = new BigDecimal(2);
         int vacationDays = 10;
 
-        BigDecimal result = vacationCalculator.calculate(avgSalary, vacationDays);
-        assertThat(result).isEqualTo(expected);
+        BigDecimal actualResult = vacationCalculator.calculate(avgSalary, vacationDays);
+        assertThat(actualResult).isEqualTo(expectedResult);
     }
 }
