@@ -9,8 +9,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.constraints.Future;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.PastOrPresent;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 
 @RestController
@@ -23,8 +26,10 @@ public class VacationPayRestController {
 
     @GetMapping
     public VacationPayResponse calculateVacPay(@RequestParam @Min(1) BigDecimal avgSalary,
-                                               @RequestParam @Min(1) int vacationDays) {
-        return vacationPayService.calculateVacPay(avgSalary, vacationDays);
+                                               @RequestParam @Min(1) int vacationDays,
+                                               @RequestParam(required = false) @PastOrPresent LocalDate from,
+                                               @RequestParam(required = false) @Future LocalDate to) {
+        return vacationPayService.calculateVacPay(avgSalary, vacationDays, from, to);
     }
 
 }
