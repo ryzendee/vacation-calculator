@@ -19,13 +19,6 @@ public class VacationPayServiceImpl implements VacationPayService {
     private final VacationCalculator vacationCalculator;
 
     @Override
-    public VacationPayResponse calculateVacPay(BigDecimal avgSalary, int vacationDays) {
-        BigDecimal vacPay = vacationCalculator.calculate(avgSalary, vacationDays);
-
-        return new VacationPayResponse(vacPay);
-    }
-
-    @Override
     public VacationPayResponse calculateVacPay(BigDecimal avgSalary, int vacationDays, LocalDate from, LocalDate to) {
         if (from != null && to != null) {
             vacationDays = countWeekdaysBetweenDates(from, to);
