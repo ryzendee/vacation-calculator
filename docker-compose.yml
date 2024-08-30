@@ -1,0 +1,8 @@
+version: '3.9'
+
+services:
+  vacation-calculator-app:
+    build:
+      dockerfile: Dockerfile
+    ports:
+      - "7090:7090"
