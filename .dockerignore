@@ -1,0 +1,8 @@
+.idea
+.mvn
+target
+Dockerfile
+docker-compose.yml
+*.md
+mvnw.*
+.gitignore
