@@ -116,25 +116,17 @@ public class VacationPayRestControllerTest {
         invalidVacationDaysParamMap.put(AVG_SALARY_PARAM, List.of("1"));
         invalidVacationDaysParamMap.put(VACATION_DAYS_PARAM, List.of("0"));
 
-        MultiValueMap<String, String> futureFromDateMap = new LinkedMultiValueMap<>();
+        MultiValueMap<String, String> fromDateAfterToDateMap = new LinkedMultiValueMap<>();
         LocalDate fromDate = LocalDate.now().plusDays(5);
-        futureFromDateMap.put(FROM_PARAM, List.of(fromDate.toString()));
-
-        MultiValueMap<String, String> pastToDateMap = new LinkedMultiValueMap<>();
-        LocalDate pastToDate = LocalDate.now().minusDays(5);
-        pastToDateMap.put(TO_PARAM, List.of(pastToDate.toString()));
-
-        MultiValueMap<String, String> presentToDateMap = new LinkedMultiValueMap<>();
-        LocalDate presentToDate = LocalDate.now();
-        presentToDateMap.put(TO_PARAM, List.of(presentToDate.toString()));
+        LocalDate toDate = LocalDate.now();
+        fromDateAfterToDateMap.put(FROM_PARAM, List.of(fromDate.toString()));
+        fromDateAfterToDateMap.put(TO_PARAM, List.of(toDate.toString()));
 
 
         return Stream.of(
                 arguments(named("Salary less than one", invalidSalaryParamMap)),
                 arguments(named("Num of vacation days less that one", invalidVacationDaysParamMap)),
-                arguments(named("From date is future", futureFromDateMap)),
-                arguments(named("To date is past", pastToDateMap)),
-                arguments(named("To date is present", presentToDateMap))
+                arguments(named("From date is after to date", fromDateAfterToDateMap))
         );
     }
 }
