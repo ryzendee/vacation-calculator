@@ -13,7 +13,13 @@ public class ControllerExceptionHandler {
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(ConstraintViolationException.class)
-    public ExceptionResponse test(ConstraintViolationException ex) {
+    public ExceptionResponse handle(ConstraintViolationException ex) {
+        return new ExceptionResponse(ex.getMessage());
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ExceptionResponse handle(IllegalArgumentException ex) {
         return new ExceptionResponse(ex.getMessage());
     }
 
